@@ -47,8 +47,8 @@ namespace NetDimension.NanUI.Properties {
         }
         
         /// <summary>
-        ///   重写当前线程的 CurrentUICulture 属性
-        ///   重写当前线程的 CurrentUICulture 属性。
+        ///   重写当前线程的 CurrentUICulture 属性，对
+        ///   使用此强类型资源类的所有资源查找执行重写。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture {
@@ -123,7 +123,7 @@ namespace NetDimension.NanUI.Properties {
         ///
         ///(function ($this) {
         ///
-        ///    const CMD_ATTR_PREFIX = &quot;formium-command&quot;;
+        ///    const CMD_ATTR_PREFIX = &quot;nanui-command&quot;;
         ///
         ///    const RAISE_FUNC_NAME = &quot;__formium_raiseHostWindowEvent&quot;;
         ///
@@ -143,7 +143,7 @@ namespace NetDimension.NanUI.Properties {
         ///
         ///        isV8Ready = true;
         ///
-        ///        if (!window.hasOwnPropert [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///        if (!window.hasOwnProperty( [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string HostWindowJavaScriptExtension {
             get {
@@ -207,6 +207,16 @@ namespace NetDimension.NanUI.Properties {
         internal static System.Drawing.Bitmap Shadow {
             get {
                 object obj = ResourceManager.GetObject("Shadow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap 启动图 {
+            get {
+                object obj = ResourceManager.GetObject("启动图", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

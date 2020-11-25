@@ -6,6 +6,8 @@
         <UseWindowsForms>true</UseWindowsForms>
         <ApplicationIcon>Resources\DemoIcon.ico</ApplicationIcon>
         <Platforms>AnyCPU;x64;x86</Platforms>
+        <AssemblyVersion>2020.11.20.143</AssemblyVersion>
+        <FileVersion>2020.11.20.143</FileVersion>
     </PropertyGroup>
 
 

@@ -117,52 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutDialog.CloseButton" xml:space="preserve">
-    <value>&amp;Close</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DefaultIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DefaultIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="AboutDialog.Title" xml:space="preserve">
-    <value>About</value>
+  <data name="DemoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DemoIcon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Browser.Loading" xml:space="preserve">
-    <value>Loading</value>
+  <data name="DemoWindowJavaScriptCode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DemoWindowJavaScriptCode.js;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="ContextMenu.CloseDevTools" xml:space="preserve">
-    <value>&amp;Close DevTools</value>
+  <data name="Indicator" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Indicator.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ContextMenu.ShowDevTools" xml:space="preserve">
-    <value>Show &amp;DevTools</value>
+  <data name="nethis56" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nethis56.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Exception.DoseNotImpementIHostWindow" xml:space="preserve">
-    <value>{0} should implement IHostWindow Interface.</value>
-  </data>
-  <data name="Exception.HaveNoRetureValue" xml:space="preserve">
-    <value>{0} should have a return value.</value>
-  </data>
-  <data name="HostWindow.DefaultTitle" xml:space="preserve">
-    <value>WinningBrowser Host Window</value>
-  </data>
-  <data name="HostWindow.DevToolsTitle" xml:space="preserve">
-    <value>WinningBrowser DevTools</value>
-  </data>
-  <data name="JSDialog.AlertDialog.Title" xml:space="preserve">
-    <value>Message</value>
-  </data>
-  <data name="JSDialog.ConfirmDialog.Title" xml:space="preserve">
-    <value>Confirm</value>
-  </data>
-  <data name="JSDialog.NoButton" xml:space="preserve">
-    <value>&amp;No</value>
-  </data>
-  <data name="JSDialog.OKButton" xml:space="preserve">
-    <value>&amp;OK</value>
-  </data>
-  <data name="JSDialog.YesButton" xml:space="preserve">
-    <value>&amp;Yes</value>
-  </data>
-  <data name="SystemMenu.About" xml:space="preserve">
-    <value>&amp;About</value>
-  </data>
-  <data name="SystemMenu.FullScreen" xml:space="preserve">
-    <value>&amp;FullScreen</value>
+  <data name="启动图" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\启动图.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

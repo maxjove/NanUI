@@ -6,6 +6,8 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>NanUI WinForms Formium CEF Chromium CefGlue</PackageTags>
         <Description>Data Service Handler for NanUI.</Description>
+        <AssemblyVersion>2020.11.20.143</AssemblyVersion>
+        <FileVersion>2020.11.20.143</FileVersion>
 
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

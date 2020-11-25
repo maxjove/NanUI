@@ -23,9 +23,10 @@ namespace NetDimension.NanUI.HostWindow
 
         public BorderlessWindow()
         {
+            this.WindowState = FormWindowState.Maximized;
             base.AutoScaleMode = AutoScaleMode.None;
 
-            base.BackColor = Color.FromArgb(33,33,33);
+            base.BackColor = Color.White;
 
             DpiHelper.InitializeDpiHelper();
 

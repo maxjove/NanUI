@@ -70,7 +70,7 @@ namespace NetDimension.NanUI.Resources {
         }
         
         /// <summary>
-        ///   查找类似 关于 NanUI 界面框架 的本地化字符串。
+        ///   查找类似 关于 WinningBrowser 界面框架 的本地化字符串。
         /// </summary>
         internal static string AboutDialog_Title {
             get {
@@ -124,7 +124,7 @@ namespace NetDimension.NanUI.Resources {
         }
         
         /// <summary>
-        ///   查找类似 WinFormium 承载窗体 的本地化字符串。
+        ///   查找类似 WinningBrowser 承载窗体 的本地化字符串。
         /// </summary>
         internal static string HostWindow_DefaultTitle {
             get {
@@ -133,7 +133,7 @@ namespace NetDimension.NanUI.Resources {
         }
         
         /// <summary>
-        ///   查找类似 WinFormium 开发者工具箱 的本地化字符串。
+        ///   查找类似 WinningBrowser 开发者工具箱 的本地化字符串。
         /// </summary>
         internal static string HostWindow_DevToolsTitle {
             get {

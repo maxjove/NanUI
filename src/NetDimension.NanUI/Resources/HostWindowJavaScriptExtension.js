@@ -2,7 +2,7 @@ var Formium = Formium || {};
 
 (function ($this) {
 
-    const CMD_ATTR_PREFIX = "formium-command";
+    const CMD_ATTR_PREFIX = "nanui-command";
 
     const RAISE_FUNC_NAME = "__formium_raiseHostWindowEvent";
 

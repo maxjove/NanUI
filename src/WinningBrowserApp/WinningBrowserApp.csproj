@@ -1,0 +1,92 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net472</TargetFrameworks>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ApplicationIcon>Resources\nethis56.ico</ApplicationIcon>
+        <Platforms>AnyCPU;x86;x64</Platforms>
+        <Authors>lj</Authors>
+        <Company>卫宁健康</Company>
+        <Product>卫宁浏览器</Product>
+        <Copyright>Copyright © 2020 lz all rights reserved.</Copyright>
+        <PackageProjectUrl>https://www.winning.com.cn</PackageProjectUrl>
+        <RepositoryUrl>https://www.winning.com.cn</RepositoryUrl>
+        <AssemblyName>WinningBrowser</AssemblyName>
+        <AssemblyVersion>2020.11.23.183</AssemblyVersion>
+        <FileVersion>2020.11.23.183</FileVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|x86'">
+      <PlatformTarget>x86</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|x64'">
+      <PlatformTarget>x64</PlatformTarget>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
+      <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <Compile Remove="DataServices\**" />
+        <Compile Remove="wwwroot\**" />
+        <EmbeddedResource Remove="DataServices\**" />
+        <EmbeddedResource Remove="wwwroot\**" />
+        <None Remove="DataServices\**" />
+        <None Remove="wwwroot\**" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <COMReference Include="IWshRuntimeLibrary.dll">
+        <WrapperTool>tlbimp</WrapperTool>
+        <VersionMinor>0</VersionMinor>
+        <VersionMajor>1</VersionMajor>
+        <Guid>f935dc20-1cf0-11d0-adb9-00c04fd58a0b</Guid>
+        <Lcid>0</Lcid>
+        <Isolated>false</Isolated>
+      </COMReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\NetDimension.NanUI\NetDimension.NanUI.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="Properties\Resources.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+        <PackageReference Include="NetDimension.NanUI.Runtime" Version="80.1.15" />
+        <PackageReference Include="RestSharpSigned" Version="105.2.3" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    </ItemGroup>
+
+
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+      <Exec Command="copy /y &quot;$(TargetDir)*.*&quot;  &quot;E:\卫宁浏览器安装程序\WinningApp\&quot;" />
+    </Target>
+
+</Project>
