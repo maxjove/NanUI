@@ -13,8 +13,8 @@
         <PackageProjectUrl>https://www.winning.com.cn</PackageProjectUrl>
         <RepositoryUrl>https://www.winning.com.cn</RepositoryUrl>
         <AssemblyName>WinningBrowser</AssemblyName>
-        <AssemblyVersion>2020.11.23.183</AssemblyVersion>
-        <FileVersion>2020.11.23.183</FileVersion>
+        <AssemblyVersion>2020.11.28.200</AssemblyVersion>
+        <FileVersion>2020.11.28.200</FileVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">

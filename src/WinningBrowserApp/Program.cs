@@ -35,19 +35,26 @@ namespace WinningBrowserApp
 
                     //cmdLine.AppendSwitch("disable-gpu");
                     //cmdLine.AppendSwitch("disable-gpu-compositing");
-                    
+                   cmdLine.AppendSwitch("disable-web-security");
+                   cmdLine.AppendSwitch("unsafely-treat-insecure-origin-as-secure", Wnconfig.GetUrl());
+                   cmdLine.AppendSwitch("enable-media-stream", "1");
+
+
                 });
 
                 env.CustomCefSettings(settings =>
                 {
                     // Configure default Cef settings here.
                     //settings.WindowlessRenderingEnabled = true;
+                    //settings.
+                    
                 });
 
                 env.CustomDefaultBrowserSettings(cefSettings =>
                 {
+                  
+                  //  cefSettings.WebSecurity = Xilium.CefGlue.CefState.Disabled;
 
-                   
                     // Configure default browser settings here.
 
                 });
@@ -97,7 +104,7 @@ namespace WinningBrowserApp
                     // You should return a Formium instatnce here or you can use context.MainForm property to set a Form which does not inherit Formium.
 
                     // context.MainForm = new Form();
-
+                    Xilium.CefGlue.CefRuntime.AddCrossOriginWhitelistEntry("*", "http", "*", true);
                     return new MainForm();
                 });
 
@@ -110,13 +117,15 @@ namespace WinningBrowserApp
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             // Log the exception, display it, etc
-            MessageBox.Show(e.Exception.Message);
+            // MessageBox.Show(e.Exception.Message);
+            MainForm.Restart();
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
+            MainForm.Restart();
             // Log the exception, display it, etc
-            MessageBox.Show((e.ExceptionObject as Exception).Message);
+            //MessageBox.Show((e.ExceptionObject as Exception).Message);
         }
     }
 }

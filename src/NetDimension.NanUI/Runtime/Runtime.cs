@@ -222,7 +222,7 @@ https://github.com/NetDimension/NanUI/blob/master/LICENCE
 
 
             CefRuntime.Initialize(new CefMainArgs(args), settings, app, IntPtr.Zero);
-
+            CefRuntime.AddCrossOriginWhitelistEntry("*", "http", "*", true);
             ApplicationConfiguration.UseExtensions[(int)ExtensionExecutePosition.Initialized]?.Invoke(this, ApplicationProperties);
 
             foreach (var config in CustomResourceHandlerConfigurations)
