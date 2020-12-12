@@ -25,90 +25,55 @@ namespace WinningBrowserApp
                 MessageBox.Show(string.Format("在目录{0}未找到代理服务文件!", text));
                 return;
             }
+            //MessageBox.Show("restartProxy");
             restartProxy();
 
 
-            //Process[] processesByName = Process.GetProcessesByName("ProxySvr4HIS");
-
-            //if (processesByName != null && processesByName.Length > 0)
-            //{
-
-            //    if (processesByName[0].MainModule.FileName != text)
-            //    {
-            //        processesByName[0].Kill();
-
-
-            //        Process[] arrProLog = Process.GetProcessesByName("NetHisWebconsole");
-            //        if (arrProLog != null && arrProLog.Length > 0)
-            //        {
-            //            foreach (Process p in arrProLog)
-            //            {
-            //                if (p.HasExited)
-            //                    p.Kill();
-            //            }
-            //        }
-            //        processesByName = null;
-            //    }
-            //    else
-            //    {
-            //        restartProxy();
-            //    }
-            //}
-
-            //if (processesByName == null || processesByName.Length == 0)
-            //{
-            //  Process p=  Process.Start(new ProcessStartInfo(text)
-            //    {
-
-
-            //        //WindowStyle = ProcessWindowStyle.Hidden,
-
-            //        //CreateNoWindow = true
-            //    });
-
-            //}
-            //else
-            //{
-
-            //    return;
-            //}
+           
         }
         public static void DelayRestartProxy()
         {
-            //Thread.Sleep(25000);
+            Thread.Sleep(2000);
             //restartProxy();
+            Process[] processesByName = Process.GetProcessesByName("ProxySvr4HIS");
+            string text = Application.StartupPath + "\\NetHisProxy\\ProxySvr4HIS.exe";
+            if (processesByName == null || processesByName.Length <= 0)
+            {
+                Process.Start(new ProcessStartInfo(text));
+            }
+        }
+        public static void MonitorProxyRun()
+        {
+            try
+            {
+                while (true)
+                {
+                    Thread.Sleep(5000);
+                    Process[] processesByName = Process.GetProcessesByName("ProxySvr4HIS");
+                    string text = Application.StartupPath + "\\NetHisProxy\\ProxySvr4HIS.exe";
+                    if (processesByName == null || processesByName.Length <= 0)
+                    {
+                        Process p = Process.Start(new ProcessStartInfo(text));
+                        break;
+
+                    }
+                    else
+                    {
+                        Thread.Sleep(5000);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            
         }
         public static void restartProxy()
         {
 
-            //Process[] arrPro1 = Process.GetProcessesByName("ProxySvr4HIS");
-            //if (arrPro1 != null && arrPro1.Length > 0)
-            //{
-            //    foreach (Process p in arrPro1)
-            //    {
-            //        p.Kill();
-            //    }
-            //}
-            //Process[] arrPro = Process.GetProcessesByName("RestSvrHost");
-            //if (arrPro != null && arrPro.Length > 0)
-            //{
-            //    foreach (Process p in arrPro)
-            //    {
-            //        p.Kill();
-            //    }
-            //}
-
-            //Process[] arrProLog = Process.GetProcessesByName("NetHisWebconsole");
-            //if (arrProLog != null && arrProLog.Length > 0)
-            //{
-            //    foreach (Process p in arrProLog)
-            //    {
-            //        if (p.HasExited)
-            //            p.Kill();
-            //    }
-            //}
-            //Thread.Sleep(200);
-            // InvokProxy();
+          
            
             try
             {
@@ -116,6 +81,7 @@ namespace WinningBrowserApp
                 string text = Application.StartupPath + "\\NetHisProxy\\ProxySvr4HIS.exe";
                 if (processesByName != null && processesByName.Length > 0)
                 {
+                    
                     var client = new RestClient("http://127.0.0.1:9045/CisRestService/ConfigRestService/proxycmd");
                     client.Timeout = -1;
                     var request = new RestRequest(Method.POST);
@@ -123,6 +89,7 @@ namespace WinningBrowserApp
                     request.AddParameter("text/plain", string.Format( "RESTART_PROXY|{0}", text), ParameterType.RequestBody);
                     IRestResponse response = client.Execute(request);
                     Console.WriteLine(response.Content);
+                    Thread.Sleep(300);
                 }
                 else
                 {
@@ -141,6 +108,7 @@ namespace WinningBrowserApp
 
                 
             }
+            
             
         }
 
@@ -172,29 +140,59 @@ namespace WinningBrowserApp
             }
 
         }
-        //[DllImport("user32.dll", CharSet = CharSet.Auto)]
-        //public static extern bool SwitchToThisWindow(IntPtr hWnd, bool fAltTab);
-        //private static void SetProxyFrmFront()
-        //{
-        //    bool hasFound = false;
-        //    Process processInfo = null;
-        //    foreach (Process process in Process.GetProcesses())
-        //    {
-        //        if (process.ProcessName == "ProxySvr4HIS")
-        //        {
-        //            processInfo = process;
-        //            hasFound = true;
-        //            break;
-        //        }
-        //    }
-        //    if (!hasFound)
-        //    {
-        //        //MessageBox.Show("未找到指定进程");
-        //        Console.WriteLine("未找到指定进程");
+        public const uint SW_SHOW = 5;
+       
+        internal static void SetWebAppFrmFront()
+        {
+            RaiseOtherProcess();
+           
 
-        //    }
-        //    //移动到最前
-        //    SwitchToThisWindow(processInfo.MainWindowHandle, true);
-        //}
+        }
+        private const uint Restore = 9;
+        public static void ActivateWindow(IntPtr mainWindowHandle)
+        {
+            //check if already has focus
+            if (mainWindowHandle == WindowsApi.GetForegroundWindow()) return;
+
+            //check if window is minimized
+            if (WindowsApi.IsIconic(mainWindowHandle))
+            {
+                WindowsApi.ShowWindow(mainWindowHandle, Restore);
+            }
+
+            
+            WindowsApi.SwitchToThisWindow(mainWindowHandle, true);
+            WindowsApi.SetForegroundWindow(mainWindowHandle);
+        }
+
+        /// <summary>
+        /// 打开该程序主窗口
+        /// </summary>
+        public static void RaiseOtherProcess()
+        {
+            System.Diagnostics.Process proc = System.Diagnostics.Process.GetCurrentProcess();
+            Process[] Proes = System.Diagnostics.Process.GetProcessesByName(proc.ProcessName);
+            foreach (System.Diagnostics.Process otherProc in Proes)
+            {
+                if (proc.Id != otherProc.Id)
+                {
+                    IntPtr hWnd = otherProc.MainWindowHandle;
+                    if (hWnd.ToInt32() == 0)
+                    {
+
+                        hWnd = WindowsApi.FindWindow(null, $"{MainForm.WbSubtitle} - {MainForm.WbTitle}");
+
+                        int id = -1;
+                        WindowsApi.GetWindowThreadProcessId(hWnd, out id);
+                        if (id == otherProc.Id)
+                            break;
+
+                    }
+                    ActivateWindow(hWnd);
+                    //此处获取的hWnd即为之前运行程序的主窗口句柄，再使用其他函数打开窗体
+                    break;
+                }
+            }
+        }
     }
 }

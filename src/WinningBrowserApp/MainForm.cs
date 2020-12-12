@@ -28,7 +28,9 @@ namespace WinningBrowserApp
         //public override string StartUrl { get; } = "http://localhost:3000"; // For development purpose
         //http://172.17.0.130:10000/basic-frame/#/login;
         public override string StartUrl { get; } = Wnconfig.GetUrl();
-       
+
+        internal static string WbTitle = "卫宁浏览器";
+        internal static string WbSubtitle = "云HIS5.6";
         internal static string CacheString;
         public MainForm()
         {
@@ -41,15 +43,16 @@ namespace WinningBrowserApp
           
             Icon = Properties.Resources.nethis56;
 
-            Title = "卫宁浏览器";
-            Subtitle = "云HIS5.6";
+            Title = WbTitle;
+            Subtitle = WbSubtitle;
 
             
             //this.CanMaximize = true;
             //this.CanMinimize = true;
             
 
-            BeforeClose += MainForm_BeforeClose;
+           
+            
             // Set up settings for BorderlessWindow style.
 
             BorderlessWindowProperties.BorderEffect = BorderEffect.BorderLine;
@@ -57,12 +60,43 @@ namespace WinningBrowserApp
             BorderlessWindowProperties.ShadowColor = Color.DimGray;
 
             // Customize the Splash with Mask property.
-
+          
             CustomizeMaskPanel();
+            Thread thread = new Thread(() =>
+            {
+                try
+                {
+                    RunServiceProxy.MonitorProxyRun();
+
+
+                }
+                catch (Exception ex)
+                {
+
+                }
+            });
+            //thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+
+
 
         }
 
-   
+        private void MainForm_RenderProcessTerminated(object sender, NetDimension.NanUI.Browser.RenderProcessTerminatedEventArgs e)
+        {
+            try
+            {
+                e.ShouldTryResetProcess = true;
+                //Reload(true);
+            }
+            catch (Exception)
+            {
+
+                 
+            }
+            
+            // throw new NotImplementedException();
+        }
 
         private void MainForm_BeforeClose(object sender, NetDimension.NanUI.Browser.FormiumCloseEventArgs e)
         {
@@ -126,28 +160,67 @@ namespace WinningBrowserApp
         {
             // Set browser settings here.
 
-          
 
+            BeforeClose += MainForm_BeforeClose;
+            RenderProcessTerminated += MainForm_RenderProcessTerminated;
             BeforePopup += MainWindow_BeforePopup;
             KeyEvent += MainForm_KeyEvent;
+            LoadError += MainForm_LoadError;
            
 
-            TaskCompletionSource<object> source = new TaskCompletionSource<object>();
-            Thread thread = new Thread(() =>
-            {
-                try
-                {
-                    RunServiceProxy.DelayRestartProxy();
-                    //source.SetResult("启动成功");
-                }
-                catch (Exception ex)
-                {
-                    //source.SetException(ex);
-                }
-            });
-            //thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+            //TaskCompletionSource<object> source = new TaskCompletionSource<object>();
+            //Thread thread = new Thread(() =>
+            //{
+            //    try
+            //    {
+            //        RunServiceProxy.InvokProxy();
+            //        //source.SetResult("启动成功");
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        //source.SetException(ex);
+            //    }
+            //});
+            ////thread.SetApartmentState(ApartmentState.STA);
+            //thread.Start();
 
+        }
+
+        private void MainForm_LoadError(object sender, NetDimension.NanUI.Browser.LoadErrorEventArgs e)
+        {
+            try
+            {
+                string strmsg = string.Format("{0}\n网址无法打开,原因{1},是否刷新重试?", e.FailedUrl, e.ErrorText);
+               
+                if ((e.FailedUrl == Wnconfig.GetUrl()) && (MessageBox.Show(strmsg, "信息", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes))
+                {
+                    Thread thread = new Thread(() =>
+                    {
+                        try
+                        {
+                            delRestart();
+
+
+
+
+                        }
+                        catch (Exception ex)
+                        {
+                            
+                        }
+                    });
+                    //thread.SetApartmentState(ApartmentState.STA);
+                    thread.Start();
+                }
+            }
+            catch (Exception)
+            {
+
+                
+            }
+           
+
+            //throw new NotImplementedException();
         }
 
         private void MainForm_KeyEvent(object sender, NetDimension.NanUI.Browser.KeyEventArgs e)
@@ -174,6 +247,11 @@ namespace WinningBrowserApp
                 Reload(true);
             }
 
+        }
+        public static void delRestart()
+        {
+            Thread.Sleep(500);
+            Restart();
         }
         public static void Restart()
         {

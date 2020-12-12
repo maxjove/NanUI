@@ -62,13 +62,14 @@ namespace NetDimension.NanUI
                 return (runtime, props) =>
                 {
                     var thisProcess = Process.GetCurrentProcess();
+                    
 
                     foreach (var process in Process.GetProcessesByName(thisProcess.ProcessName))
                     {
                         if (process.Id != thisProcess.Id)
                         {
                             onProcessAlreadyExists?.Invoke();
-
+                           
                             Environment.Exit(0);
                             return;
 

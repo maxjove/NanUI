@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,11 +21,22 @@ namespace WinningBrowserApp
 #if NETCOREAPP3_1 || NET5_0
             Application.SetHighDpiMode(HighDpiMode.PerMonitorV2);
 #endif
+            //bool createNew;
+            //using (System.Threading.Mutex m = new System.Threading.Mutex(true, Application.ProductName, out createNew))
+            //{
+            //    if (!createNew)
+            //    {
+            //        MessageBox.Show("只能运行一个实例!");
+            //        return;
+            //    }
+            //}
+            //MessageBox.Show("只能运行一个实例!");
+            Application.ThreadException -= new ThreadExceptionEventHandler(Application_ThreadException);
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            AppDomain.CurrentDomain.UnhandledException -= new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
-         
-            ShortCutHelper.CreateShortcutOnDesktop("卫宁基层卫生信息系统V5.6", Application.ExecutablePath);
+            //MainForm mfrm = null;
             WinFormium.CreateRuntimeBuilder(env =>
             {
                 // You should do some initializing staffs of Cef Environment in this function.
@@ -38,21 +50,32 @@ namespace WinningBrowserApp
                    cmdLine.AppendSwitch("disable-web-security");
                    cmdLine.AppendSwitch("unsafely-treat-insecure-origin-as-secure", Wnconfig.GetUrl());
                    cmdLine.AppendSwitch("enable-media-stream", "1");
+                    //--disk-cache-size=xxx
+                    cmdLine.AppendSwitch("disk-cache-size", "1");
+                    if (!Environment.Is64BitProcess)
+                    {
+                        //MessageBox.Show("设置内存");
+                        cmdLine.AppendArgument("max-old-space-size=1000");
+                     }
 
 
                 });
 
                 env.CustomCefSettings(settings =>
                 {
+                    //MessageBox.Show(settings.CachePath);
                     // Configure default Cef settings here.
                     //settings.WindowlessRenderingEnabled = true;
                     //settings.
-                    
+                 
+                 
+
                 });
 
                 env.CustomDefaultBrowserSettings(cefSettings =>
                 {
-                  
+
+                    cefSettings.ApplicationCache= Xilium.CefGlue.CefState.Disabled;
                   //  cefSettings.WebSecurity = Xilium.CefGlue.CefState.Disabled;
 
                     // Configure default browser settings here.
@@ -61,7 +84,7 @@ namespace WinningBrowserApp
             },
             app =>
             {
-                // You can configure your application settings of NanUI here.
+
 #if DEBUG
                 // Use this setting if your application running in DEBUG mode, it will allow user to open or clode DevTools by right-clicking mouse button and selecting menu items on context menu.
                 //app.UseDebuggingMode();
@@ -70,13 +93,31 @@ namespace WinningBrowserApp
 
 
                 // Clear all cached files such as cookies, histories, localstorages, etc.
-                if (args!=null && args.Length>0 && args[0] == "DeleteCache")
+                if (args != null && args.Length > 0 && args[0] == "DeleteCache")
                 {
-                    app.ClearCacheFile();
-                     
-                 }
+                    //RunServiceProxy.InvokProxy();
 
-               
+                    app.ClearCacheFile();
+
+
+                }
+                Thread.Sleep(600);
+                //var thisProcess = Process.GetCurrentProcess();
+                //if (Process.GetProcessesByName(thisProcess.ProcessName).Length == 1)
+                //{
+                //    if (Process.GetProcessesByName(thisProcess.ProcessName)[0].Id != thisProcess.Id)
+                //    {
+                //        Process.GetProcessesByName(thisProcess.ProcessName)[0].Kill();
+                //    }
+                //}
+
+                app.UseSingleInstance(() =>
+                {
+                    //MessageBox.Show("只能运行一个程序");
+
+                    RunServiceProxy.SetWebAppFrmFront();
+                    return;
+                });
 
                 // Set a main window class inherit Formium here to start appliation message loop.
                 app.UseMainWindow(context =>
@@ -84,6 +125,22 @@ namespace WinningBrowserApp
                     
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
+
+
+
+                    //Process[] processesByName = Process.GetProcessesByName("ProxySvr4HIS");
+
+                    //if (processesByName == null || processesByName.Length <= 0)
+                    //{
+                    //RunServiceProxy.InvokProxy();
+                   
+                    //}
+                    ShortCutHelper.CreateShortcutOnDesktop("卫宁基层卫生信息系统V5.6", Application.ExecutablePath);
+                    // You should return a Formium instatnce here or you can use context.MainForm property to set a Form which does not inherit Formium.
+
+                    // context.MainForm = new Form();
+                    //Xilium.CefGlue.CefRuntime.AddCrossOriginWhitelistEntry("*", "http", "*", true);
+                    //mfrm= new MainForm();
                     TaskCompletionSource<object> source = new TaskCompletionSource<object>();
                     Thread thread = new Thread(() =>
                     {
@@ -100,11 +157,6 @@ namespace WinningBrowserApp
                     });
                     //thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
-
-                    // You should return a Formium instatnce here or you can use context.MainForm property to set a Form which does not inherit Formium.
-
-                    // context.MainForm = new Form();
-                    Xilium.CefGlue.CefRuntime.AddCrossOriginWhitelistEntry("*", "http", "*", true);
                     return new MainForm();
                 });
 
@@ -118,12 +170,13 @@ namespace WinningBrowserApp
         {
             // Log the exception, display it, etc
             // MessageBox.Show(e.Exception.Message);
-            MainForm.Restart();
+            //MainForm.Restart();
+            
         }
 
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MainForm.Restart();
+           // MainForm.Restart();
             // Log the exception, display it, etc
             //MessageBox.Show((e.ExceptionObject as Exception).Message);
         }
