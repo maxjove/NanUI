@@ -49,7 +49,7 @@ namespace WinningBrowserApp
                    cmdLine.AppendSwitch("unsafely-treat-insecure-origin-as-secure", Wnconfig.GetUrl());
                    cmdLine.AppendSwitch("enable-media-stream", "1");
                     //--disk-cache-size=xxx
-                    cmdLine.AppendSwitch("disk-cache-size", "1");
+                   // cmdLine.AppendSwitch("disk-cache-size", "1");
                     if (!Environment.Is64BitProcess)
                     {
                         //MessageBox.Show("…Ë÷√ƒ⁄¥Ê");
