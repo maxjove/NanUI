@@ -70,6 +70,7 @@ namespace FormiumClient
                 // app.ClearCacheFile();
 
                 app.UseEmbeddedFileResource("http", "main.app.local", "wwwroot");
+                app.UseLocalFileResource("http", "demo.app.local", "asserts");
 
                 // Register LocalFileResource handler which can handle the file resources in local folder.
                 app.UseLocalFileResource("http", "static.app.local", System.IO.Path.Combine(Application.StartupPath, "LocalFiles"));

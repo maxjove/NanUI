@@ -13,8 +13,8 @@
         <PackageProjectUrl>https://www.winning.com.cn</PackageProjectUrl>
         <RepositoryUrl>https://www.winning.com.cn</RepositoryUrl>
         <AssemblyName>WinningBrowser</AssemblyName>
-        <AssemblyVersion>2020.12.12.283</AssemblyVersion>
-        <FileVersion>2020.12.12.283</FileVersion>
+        <AssemblyVersion>2020.12.13.284</AssemblyVersion>
+        <FileVersion>2020.12.13.284</FileVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
@@ -57,6 +57,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\NetDimension.NanUI.LocalFileResource\NetDimension.NanUI.LocalFileResource.csproj" />
         <ProjectReference Include="..\NetDimension.NanUI\NetDimension.NanUI.csproj" />
     </ItemGroup>
 
@@ -81,6 +82,26 @@
         <PackageReference Include="NetDimension.NanUI.Runtime" Version="80.1.15" />
         <PackageReference Include="RestSharpSigned" Version="105.2.3" />
         <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <None Update="asserts\fonts\fontawesome-webfont.woff2">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="asserts\index.html">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="asserts\scripts\jquery-2.2.3.js">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="asserts\styles\app.css">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="asserts\styles\font-awesome.min.css">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 

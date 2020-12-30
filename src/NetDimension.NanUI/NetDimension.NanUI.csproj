@@ -9,8 +9,8 @@
         <PackageTags>NanUI WinForms Formium CEF Chromium CefGlue</PackageTags>
         <RepositoryType>git</RepositoryType>
         <PackageIcon>NanUI.png</PackageIcon>
-        <AssemblyVersion>2020.12.12.256</AssemblyVersion>
-        <FileVersion>2020.12.12.256</FileVersion>
+        <AssemblyVersion>2020.12.13.257</AssemblyVersion>
+        <FileVersion>2020.12.13.257</FileVersion>
 
     </PropertyGroup>
 

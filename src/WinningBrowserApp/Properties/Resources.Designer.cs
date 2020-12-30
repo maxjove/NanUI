@@ -137,6 +137,39 @@ namespace WinningBrowserApp.Properties {
         }
         
         /// <summary>
+        ///   查找类似 var Formium = Formium || {};
+        ///
+        ///(function ($this) {
+        ///
+        ///    const CMD_ATTR_PREFIX = &quot;nanui-command&quot;;
+        ///
+        ///    const RAISE_FUNC_NAME = &quot;__formium_raiseHostWindowEvent&quot;;
+        ///
+        ///    const GLOBAL_CLICK_HANDLER_REGISTERED =
+        ///        &quot;__formium_global_click_handler_registered&quot;;
+        ///
+        ///
+        ///    let isV8Ready = false;
+        ///
+        ///    let isDomReady = false;
+        ///
+        ///    const readyFunctions = [];
+        ///
+        ///    const contextReadyFunctions = [];
+        ///
+        ///    $this._setContextReady =  () =&gt; {
+        ///
+        ///        isV8Ready = true;
+        ///
+        ///        if (!window.hasOwnProperty( [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string WinningBrowerWindowJavaScriptExtension {
+            get {
+                return ResourceManager.GetString("WinningBrowerWindowJavaScriptExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap 启动图 {

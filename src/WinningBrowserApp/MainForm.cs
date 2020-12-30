@@ -27,6 +27,7 @@ namespace WinningBrowserApp
         //public override string StartUrl { get; } = "http://main.app.local/";
         //public override string StartUrl { get; } = "http://localhost:3000"; // For development purpose
         //http://172.17.0.130:10000/basic-frame/#/login;
+        //public override string StartUrl { get; } = "http://demo.app.local/";
         public override string StartUrl { get; } = Wnconfig.GetUrl();
 
         internal static string WbTitle = "卫宁浏览器";
@@ -46,11 +47,11 @@ namespace WinningBrowserApp
             Title = WbTitle;
             Subtitle = WbSubtitle;
 
-            
+
             //this.CanMaximize = true;
             //this.CanMinimize = true;
-            
 
+            this.BeforeBrowse += MainForm_BeforeBrowse;
            
             
             // Set up settings for BorderlessWindow style.
@@ -80,6 +81,18 @@ namespace WinningBrowserApp
 
 
 
+        }
+
+        private void MainForm_BeforeBrowse(object sender, NetDimension.NanUI.Browser.BeforeBrowseEventArgs e)
+        {
+            //http://1.1.1.3:89/cookie/flash.js
+            if (e.Request.Url.Contains(".js"))
+            {
+                MessageBox.Show(e.Request.Url);
+                e.Cancelled = true;
+                //e.Request.Url = "https://www.163.com/";
+            }
+           // throw new NotImplementedException();
         }
 
         private void MainForm_RenderProcessTerminated(object sender, NetDimension.NanUI.Browser.RenderProcessTerminatedEventArgs e)
@@ -190,6 +203,10 @@ namespace WinningBrowserApp
         {
             try
             {
+                if (e.ErrorText == "ERR_ABORTED")
+                {
+                    return;
+                }
                 string strmsg = string.Format("{0}\n网址无法打开,原因{1},是否刷新重试?", e.FailedUrl, e.ErrorText);
                
                 if ((e.FailedUrl == Wnconfig.GetUrl()) && (MessageBox.Show(strmsg, "信息", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes))

@@ -43,6 +43,21 @@
     </ItemGroup>
 
     <ItemGroup>
+        <None Update="asserts\fonts\fontawesome-webfont.woff2">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="asserts\index.html">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="asserts\scripts\jquery-2.2.3.js">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="asserts\styles\app.css">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="asserts\styles\font-awesome.min.css">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
         <None Update="LayeredDemoResource.zip">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

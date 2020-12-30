@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{D328
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinningBrowserApp", "src\WinningBrowserApp\WinningBrowserApp.csproj", "{ED2DB84F-97B5-4FD9-B853-7B3A6ADD6C53}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FormiumClient", "src\FormiumClient\FormiumClient.csproj", "{047F8C4C-7D32-4F83-A769-983715923856}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,18 @@ Global
 		{ED2DB84F-97B5-4FD9-B853-7B3A6ADD6C53}.Release|x64.Build.0 = Release|x64
 		{ED2DB84F-97B5-4FD9-B853-7B3A6ADD6C53}.Release|x86.ActiveCfg = Release|x86
 		{ED2DB84F-97B5-4FD9-B853-7B3A6ADD6C53}.Release|x86.Build.0 = Release|x86
+		{047F8C4C-7D32-4F83-A769-983715923856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{047F8C4C-7D32-4F83-A769-983715923856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{047F8C4C-7D32-4F83-A769-983715923856}.Debug|x64.ActiveCfg = Debug|x64
+		{047F8C4C-7D32-4F83-A769-983715923856}.Debug|x64.Build.0 = Debug|x64
+		{047F8C4C-7D32-4F83-A769-983715923856}.Debug|x86.ActiveCfg = Debug|x86
+		{047F8C4C-7D32-4F83-A769-983715923856}.Debug|x86.Build.0 = Debug|x86
+		{047F8C4C-7D32-4F83-A769-983715923856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{047F8C4C-7D32-4F83-A769-983715923856}.Release|Any CPU.Build.0 = Release|Any CPU
+		{047F8C4C-7D32-4F83-A769-983715923856}.Release|x64.ActiveCfg = Release|x64
+		{047F8C4C-7D32-4F83-A769-983715923856}.Release|x64.Build.0 = Release|x64
+		{047F8C4C-7D32-4F83-A769-983715923856}.Release|x86.ActiveCfg = Release|x86
+		{047F8C4C-7D32-4F83-A769-983715923856}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

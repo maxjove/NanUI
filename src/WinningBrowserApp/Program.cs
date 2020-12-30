@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NetDimension.NanUI;
+using NetDimension.NanUI.LocalFileResource;
 
 namespace WinningBrowserApp
 {
@@ -91,7 +89,8 @@ namespace WinningBrowserApp
 #endif
 
 
-
+                app.UseLocalFileResource("http", "demo.app.local", "asserts");
+                app.RegisterJavaScriptExtension(() => new WinningBrowerWindowExtension());
                 // Clear all cached files such as cookies, histories, localstorages, etc.
                 if (args != null && args.Length > 0 && args[0] == "DeleteCache")
                 {

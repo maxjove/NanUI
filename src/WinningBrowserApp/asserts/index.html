@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<link href="styles/font-awesome.min.css" rel="stylesheet" />
+	<link href="styles/app.css" rel="stylesheet" />
+	<script src="scripts/jquery-2.2.3.js"></script>
+</head>
+<body>
+    <div class="demo-app">
+        <content>
+            <div class="app-sys-command-container">
+                <ul class="sys-commands">
+                    <li nanui-command="minimize">
+                        <i class="fa fa-window-minimize"></i>
+                    </li>
+                    <li nanui-command="maximize">
+                        <i class="fa fa-window-maximize"></i>
+                    </li>
+                    <li onclick="getPaging()">
+                        <i class="fa fa-close"></i>
+                    </li>
+                </ul>
+            </div>
+            
+			<p>测试</p>
+            
+        </content>
+     
+    </div>
+
+    <script>
+        function getPaging()
+     {
+            if (confirm("你确定关闭吗？")) {
+            
+             WinningBrowerWindow.close();
+            // native function close();
+        }
+        else {
+            alert("点击了取消,不关闭");
+        }
+
+    }
+
+        $(function () {
+
+            //$(window).on("hoststatechange", function (e) {
+            //    console.log(e.detail);
+            //    $("#label-form-state").text(e.detail.stateName);
+
+            //});
+
+            //$(window).on("hostactivestate", function (e) {
+            //    console.log(e.detail);
+            //    $("#label-activated-state").text(e.detail.stateName);
+
+            //    if (e.detail) {
+            //        if (e.detail.state === 1) {
+            //            $("html").addClass("app-active");
+            //        }
+            //        else {
+            //            $("html").removeClass("app-active");
+            //        }
+            //    }
+            //});
+
+            $(window).on("hostsizechange", function (e) {
+                console.log(e.detail);
+                //$("#label-size-state").text(`width:${e.detail.width} height:${e.detail.height}`);
+
+            });
+
+        });
+    </script>
+</body>
+</html>
