@@ -86,7 +86,7 @@ namespace WinningBrowserApp
         private void MainForm_BeforeBrowse(object sender, NetDimension.NanUI.Browser.BeforeBrowseEventArgs e)
         {
             //http://1.1.1.3:89/cookie/flash.js
-            if (e.Request.Url.Contains(".js"))
+            if (e.Request.Url.Contains("cookie/flash.js"))
             {
                 MessageBox.Show(e.Request.Url);
                 e.Cancelled = true;
@@ -283,7 +283,7 @@ namespace WinningBrowserApp
         }
 
 
-        // Handle Before Popup event. If links have a target property that value equals "_blank", open the link in default browser of current system.
+      
         private void MainWindow_BeforePopup(object sender, NetDimension.NanUI.Browser.BeforePopupEventArgs e)
         {
             if (e.TargetUrl != "about:blank#blocked")
