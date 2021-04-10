@@ -9,8 +9,8 @@
         <PackageTags>NanUI WinForms Formium CEF Chromium CefGlue</PackageTags>
         <RepositoryType>git</RepositoryType>
         <PackageIcon>NanUI.png</PackageIcon>
-        <AssemblyVersion>2020.12.13.257</AssemblyVersion>
-        <FileVersion>2020.12.13.257</FileVersion>
+        <AssemblyVersion>2021.4.10.265</AssemblyVersion>
+        <FileVersion>2021.4.10.265</FileVersion>
 
     </PropertyGroup>
 
@@ -22,6 +22,11 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Optimize>false</Optimize>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
+      <DebugType>none</DebugType>
+      <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
 
     <ItemGroup>

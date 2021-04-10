@@ -13,8 +13,8 @@
         <PackageProjectUrl>https://www.winning.com.cn</PackageProjectUrl>
         <RepositoryUrl>https://www.winning.com.cn</RepositoryUrl>
         <AssemblyName>WinningBrowser</AssemblyName>
-        <AssemblyVersion>2020.12.13.284</AssemblyVersion>
-        <FileVersion>2020.12.13.284</FileVersion>
+        <AssemblyVersion>2021.4.10.289</AssemblyVersion>
+        <FileVersion>2021.4.10.289</FileVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net472|AnyCPU'">
@@ -31,6 +31,8 @@
 
     <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net472|AnyCPU'">
       <PlatformTarget>AnyCPU</PlatformTarget>
+      <DebugType>none</DebugType>
+      <DebugSymbols>false</DebugSymbols>
     </PropertyGroup>
 
 
